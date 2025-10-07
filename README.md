@@ -1,41 +1,49 @@
-# Aarav Sharma — Portfolio (GitHub Pages)
+# Aarav Sharma — Personal Portfolio
 
-This is a single‑page personal website you can host **for free** via GitHub Pages.
+![Preview](assets/interests/photography.jpg)
 
-## Quick start
+A responsive personal portfolio website built with **HTML + Tailwind CSS** and hosted for free on **GitHub Pages** using a custom domain (`aaravtech.me`).
 
-1. Create a new public repo named `aaravsharma1.github.io` (or any repo; for user sites, use `username.github.io`).
-2. Download `site.zip`, unzip it, and copy all files into the repo.
-3. Commit & push.
-4. If not using the `username.github.io` pattern, enable Pages:
-   - Settings → Pages → Deploy from branch → `main` / `/root`.
-5. Visit your site at `https://<username>.github.io/` or the repo’s Pages URL.
+## 🌟 Features
+- Light/dark theme toggle (persistent with localStorage)
+- Sections for About, Experience, Projects, Skills, and Work Samples
+- Responsive layout optimized for mobile & desktop
+- Minimalist design with clean typography and Tailwind utility classes
+- Free hosting via GitHub Pages
 
-## Update your resume
+## 📂 Project Structure
+```
+index.html
+assets/
+ ├── resume.pdf
+ ├── work-samples/
+ │    └── final-research-report.pdf
+ ├── interests/
+ │    ├── hiking.jpg
+ │    ├── photography.jpg
+ │    └── traveling.jpg
+ ├── work-samples.json
+ └── site.css
+README.md
+```
 
-Replace `assets/resume.pdf` with your latest PDF. The header and footer links update automatically.
+## 🚀 Deployment
+This site is live at **[https://aaravtech.me](https://aaravtech.me)** via GitHub Pages.
 
-## Add work samples (PDFs)
+To update your site:
+1. Edit or replace any files (e.g., resume, work samples, photos).
+2. Commit changes to `main` branch — GitHub Pages will automatically redeploy.
 
-1. Drop your PDFs into `assets/work-samples/`.
-2. Edit `assets/work-samples.json` to list each sample:
-   ```json
-   [
-     {
-       "title": "My Project — One‑Pager",
-       "description": "What the PDF covers.",
-       "file": "assets/work-samples/my-project.pdf",
-       "tags": ["tag1","tag2"]
-     }
-   ]
-   ```
+If your domain stops showing updates:
+- Hard refresh (`Cmd+Shift+R` or `Ctrl+Shift+R`)
+- Check **Settings → Pages → Deployment logs**
+- Ensure the repo root (not a subfolder) contains `index.html`
 
-## Customize
+## 🛠️ Local Testing
+Simply open `index.html` in your browser. No build step required.
 
-- Edit `index.html` to change sections.
-- `assets/site.css` holds a couple of print/smooth‑scroll tweaks.
-- Tailwind is included via CDN for convenience.
-
-## Local preview
-
-Just open `index.html` in a browser. No build step required.
+## 📬 Contact
+**Aarav Sharma**  
+BS/MS Computer Science @ Georgia Tech  
+📧 [aarav.sharma@gatech.edu](mailto:aarav.sharma@gatech.edu)  
+🌐 [aaravtech.me](https://aaravtech.me) | [LinkedIn](https://www.linkedin.com/in/aaravsharma1) | [GitHub](https://github.com/AaravSharma1)
