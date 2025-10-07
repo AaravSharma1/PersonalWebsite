@@ -9,25 +9,5 @@
       "PyTorch",
       "CNN"
     ]
-  },
-  {
-    "title": "Spotify Wrapped LLM \u2014 Technical Write\u2011up (PDF)",
-    "description": "Architecture + results overview for the Android + LLM analysis app.",
-    "file": "assets/work-samples/sample-1.pdf",
-    "tags": [
-      "Android",
-      "LLM",
-      "Firebase"
-    ]
-  },
-  {
-    "title": "Tennis CV Tracking \u2014 Research Poster (PDF)",
-    "description": "Ball tracking with TrackNet + OpenCV; velocity/bounce estimation.",
-    "file": "assets/work-samples/sample-2.pdf",
-    "tags": [
-      "Computer Vision",
-      "OpenCV",
-      "TrackNet"
-    ]
   }
 ]
