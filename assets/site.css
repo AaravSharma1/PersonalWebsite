@@ -1,0 +1,9 @@
+
+/* Print-friendly tweaks */
+@media print {
+  .no-print { display: none !important; }
+  .print-block { display: block !important; }
+}
+/* Smooth anchor offset for fixed header */
+:root { scroll-behavior: smooth; }
+html { scroll-padding-top: 80px; }
