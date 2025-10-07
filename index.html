@@ -1,25 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="notranslate" translate="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aarav Sharma   Portfolio</title>
-  <meta name="description" content="Aarav Sharma   Software Engineer & Researcher at Georgia Tech" />
+  <title>Aarav Sharma · Portfolio</title>
+  <meta name="description" content="Aarav Sharma · Software Engineer & Researcher at Georgia Tech" />
+
+  <!-- Early theme: set 'dark' before paint if needed -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var shouldDark = saved ? (saved === 'dark')
+          : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (shouldDark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- IMPORTANT: enable class-based dark mode -->
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
   <link rel="stylesheet" href="assets/site.css" />
   <style>
-    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; }
-    .glass { backdrop-filter: blur(10px); background: color-mix(in oklab, var(--tw-bg-opacity) 0%, transparent 0%); }
+    :root { scroll-behavior: smooth; }
+    html { scroll-padding-top: 80px; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   </style>
 </head>
-<body class="bg-white text-zinc-900 dark:text-zinc-100 dark:bg-zinc-900 dark:text-zinc-100">
+<body class="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
   <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-zinc-200/60 bg-white/75 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-900/75">
+  <header class="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/90 backdrop-blur dark:border-zinc-800/80 dark:bg-zinc-900/90">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="font-extrabold tracking-tight text-xl">Aarav<span class="text-zinc-500">.</span></a>
+      <a href="#" class="font-extrabold tracking-tight text-xl">Aarav<span class="text-indigo-500">.</span></a>
       <nav class="hidden md:flex gap-6 text-sm">
         <a class="hover:opacity-80" href="#about">About</a>
         <a class="hover:opacity-80" href="#experience">Experience</a>
@@ -29,40 +51,61 @@
         <a class="hover:opacity-80" href="#interests">Interests</a>
       </nav>
       <div class="flex items-center gap-2">
-        <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-zinc-900 text-white   hover:opacity-90 transition dark:bg-white dark:text-zinc-900 dark:text-zinc-100">
+        <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-zinc-900 text-white hover:opacity-90 transition dark:bg-white dark:text-zinc-900">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h4.66V9h3.84L12 2z"/></svg>
           Resume
         </a>
-        
+        <!-- Theme toggle -->
+        <button id="themeToggle" class="rounded-xl px-3 py-2 text-sm border border-zinc-300 hover:bg-zinc-100 transition inline-flex items-center gap-2 dark:border-zinc-700 dark:hover:bg-zinc-800" aria-pressed="false" aria-label="Toggle theme">
+          <span class="sr-only">Toggle theme</span>
+          <!-- Sun -->
+          <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10 10h2v-3h-2v3zM4.95 19.07l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20 11v2h3v-2h-3zm-2.34-6.95l-1.41-1.41-1.8 1.79 1.42 1.42 1.79-1.8zM12 6a6 6 0 100 12 6 6 0 000-12zm7.05 13.07l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42z"/>
+          </svg>
+          <!-- Moon -->
+          <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.74 2.01A9 9 0 0021 12a9 9 0 11-8.26-9.99z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10 opacity-20 dark:opacity-30 pointer-events-none"
-         style="background: radial-gradient(800px 400px at 10% 0%, #818cf8 0%, transparent 50%),
-                        radial-gradient(600px 300px at 90% 20%, #34d399 0%, transparent 50%),
-                        radial-gradient(700px 350px at 50% 120%, #f472b6 0%, transparent 50%);"></div>
+    <div class="absolute inset-0 -z-10 opacity-35 dark:opacity-45 pointer-events-none"
+         style="background:
+           radial-gradient(900px 450px at 10% -10%, #818cf8 0%, transparent 60%),
+           radial-gradient(800px 400px at 100% 0%, #22c55e 0%, transparent 55%),
+           radial-gradient(900px 450px at 50% 120%, #f472b6 0%, transparent 60%);">
+    </div>
     <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <div>
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Hi, I’m Aarav Sharma.</h1>
-          <p class="mt-4 text-zinc-600 text-lg">BS/MS Computer Science @ Georgia Tech. I build thoughtful software and applied ML systems   from mobile products to research‑grade models.</p>
+          <p class="mt-4 text-zinc-700 dark:text-zinc-300 text-lg">
+            BS/MS Computer Science @ Georgia Tech.
+          </p>
           <div class="mt-6 flex gap-3">
-            <a href="mailto:aarav.sharma@gatech.edu" class="inline-flex items-center rounded-xl px-4 py-2 bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 dark:text-zinc-100 text-sm hover:opacity-90 transition">Contact</a>
-            <a href="https://github.com/AaravSharma1" target="_blank" class="inline-flex items-center rounded-xl px-4 py-2 border border-zinc-300 dark:border-zinc-700 text-sm hover:bg-zinc-100 transition">GitHub</a>
-            <a href="https://www.linkedin.com/in/aaravsharma1" target="_blank" class="inline-flex items-center rounded-xl px-4 py-2 border border-zinc-300 dark:border-zinc-700 text-sm hover:bg-zinc-100 transition">LinkedIn</a>
+            <a href="mailto:aarav.sharma@gatech.edu" class="inline-flex items-center rounded-xl px-4 py-2 bg-zinc-900 text-white text-sm hover:opacity-90 transition dark:bg-white dark:text-zinc-900">Contact</a>
+            <a href="https://github.com/AaravSharma1" target="_blank" class="inline-flex items-center rounded-xl px-4 py-2 border border-zinc-300 text-sm hover:bg-zinc-100 transition dark:border-zinc-700 dark:hover:bg-zinc-800">GitHub</a>
+            <a href="https://www.linkedin.com/in/aaravsharma1" target="_blank" class="inline-flex items-center rounded-xl px-4 py-2 border border-zinc-300 text-sm hover:bg-zinc-100 transition dark:border-zinc-700 dark:hover:bg-zinc-800">LinkedIn</a>
           </div>
         </div>
         <div class="md:justify-self-end">
-          <div class="rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60">
+          <div class="rounded-2xl p-6 border border-zinc-200 bg-white/70 dark:border-zinc-800 dark:bg-zinc-900/70">
             <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div><dt class="text-zinc-500">Location</dt><dd>Atlanta, GA</dd></div>
-              
-              <div><dt class="text-zinc-500">Email</dt><dd><a class="underline" href="mailto:aarav.sharma@gatech.edu">aarav.sharma@gatech.edu</a></dd></div>
-              <div><dt class="text-zinc-500">Phone</dt><dd><a class="underline" href="tel:+17037747605">703‑774‑7605</a></dd></div>
-              <div class="col-span-2"><dt class="text-zinc-500">Currently</dt><dd>BS/MS in Computer Science<br>Concentrations: Information Internetworks &amp; Artificial Intelligence<br>Expected Graduation: May 2027</dd></div>
+              <div><dt class="text-zinc-500 dark:text-zinc-400">Location</dt><dd>Atlanta, GA</dd></div>
+              <div><dt class="text-zinc-500 dark:text-zinc-400">Email</dt><dd><a class="underline" href="mailto:aarav.sharma@gatech.edu">aarav.sharma@gatech.edu</a></dd></div>
+              <div><dt class="text-zinc-500 dark:text-zinc-400">Phone</dt><dd><a class="underline" href="tel:+17037747605">703-774-7605</a></dd></div>
+              <div class="col-span-2">
+                <dt class="text-zinc-500 dark:text-zinc-400">Currently</dt>
+                <dd>
+                  BS/MS in Computer Science<br>
+                  Concentrations: Information Internetworks and Artificial Intelligence<br>
+                  Expected Graduation: May 2027
+                </dd>
+              </div>
             </dl>
           </div>
         </div>
@@ -73,44 +116,60 @@
   <!-- About -->
   <section id="about" class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold">About</h2>
-    <p class="mt-4 text-zinc-700">I enjoy building products that feel simple on the surface and rigorous underneath. Recently, I’ve worked across mobile, applied ML, and research: shipping user‑facing features at Amazon, building vulnerability detection pipelines, and modeling fluid‑flow phenomena in cross‑flow heat exchangers.</p>
+    <p class="mt-4 text-zinc-700 dark:text-zinc-300">
+      I enjoy building products that feel simple on the surface and rigorous underneath. Recently, I have worked across mobile, applied ML, and research: shipping user facing features at Amazon, building vulnerability detection pipelines, and modeling fluid flow in cross flow heat exchangers.
+    </p>
   </section>
 
   <!-- Experience -->
   <section id="experience" class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold">Experience</h2>
     <div class="mt-6 grid gap-4">
-      <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5">
+      <!-- Amazon -->
+      <article class="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
         <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 class="font-semibold">Amazon   Software Development Engineer Intern</h3>
-          <span class="text-sm text-zinc-500">May 2025 – Aug 2025 · Seattle, WA</span>
+          <div>
+            <h3 class="font-semibold text-lg">Amazon</h3>
+            <div class="text-zinc-700 dark:text-zinc-300">Software Development Engineer Intern</div>
+          </div>
+          <span class="text-sm text-zinc-500">May 2025 to Aug 2025 · Seattle, WA</span>
         </div>
-        <ul class="list-disc pl-5 mt-2 text-zinc-700">
-          <li>Engineered a React Native carousel for Echo devices, increasing one‑tap photo additions by 36% for ~15.5M MAU.</li>
-          <li>Built a comprehensive Jest suite (95% coverage) across 4 user flows.</li>
-          <li>Led feature‑gated rollout + success metrics, driving a 28% engagement lift.</li>
+        <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
+          <li>Engineered a React Native carousel for Echo devices, increasing one tap photo additions by 36 percent for about 15.5M MAU.</li>
+          <li>Built a comprehensive Jest suite with 95 percent coverage across 4 user flows.</li>
+          <li>Led feature gated rollout and success metrics, driving a 28 percent engagement lift.</li>
         </ul>
       </article>
-      <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5">
+
+      <!-- ManTech -->
+      <article class="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
         <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 class="font-semibold">ManTech   Software Engineer Intern</h3>
-          <span class="text-sm text-zinc-500">May 2024 – Apr 2025 · Herndon, VA</span>
+          <div>
+            <h3 class="font-semibold text-lg">ManTech</h3>
+            <div class="text-zinc-700 dark:text-zinc-300">Software Engineer Intern</div>
+          </div>
+          <span class="text-sm text-zinc-500">May 2024 to Apr 2025 · Herndon, VA</span>
         </div>
-        <ul class="list-disc pl-5 mt-2 text-zinc-700">
-          <li>Trained Graph Neural Networks to identify software vulnerabilities in binaries, >90% accuracy.</li>
-          <li>Developed a custom LLM (SGLang) for commit analysis & CWE classification; +25% threat detection.</li>
-          <li>Automated analysis & triage of 60+ vulnerabilities; reduced threats by 30%.</li>
+        <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
+          <li>Trained Graph Neural Networks to identify software vulnerabilities in binaries, more than 90 percent accuracy.</li>
+          <li>Developed a custom LLM in SGLang for commit analysis and CWE classification; plus 25 percent threat detection.</li>
+          <li>Automated analysis and triage of 60 plus vulnerabilities; reduced threats by 30 percent.</li>
         </ul>
       </article>
-      <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5">
+
+      <!-- Georgia Tech DICE Lab -->
+      <article class="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
         <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 class="font-semibold">Georgia Tech   DICE Lab, Undergraduate Research Assistant</h3>
-          <span class="text-sm text-zinc-500">Dec 2023 – Present · Atlanta, GA</span>
+          <div>
+            <h3 class="font-semibold text-lg">Georgia Tech DICE Lab</h3>
+            <div class="text-zinc-700 dark:text-zinc-300">Undergraduate Research Assistant</div>
+          </div>
+          <span class="text-sm text-zinc-500">Dec 2023 to Present · Atlanta, GA</span>
         </div>
-        <ul class="list-disc pl-5 mt-2 text-zinc-700">
-          <li>Computational analysis of a cross‑flow heat exchanger using topology optimization.</li>
+        <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
+          <li>Computational analysis of a cross flow heat exchanger using topology optimization.</li>
           <li>Enhanced location detection with CNNs in PyTorch.</li>
-          <li>Processed 15+ CFD features from OpenFOAM to predict fluid‑flow phenomena.</li>
+          <li>Processed 15 plus CFD features from OpenFOAM to predict fluid flow phenomena.</li>
         </ul>
       </article>
     </div>
@@ -120,29 +179,29 @@
   <section id="projects" class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold">Projects</h2>
     <div class="mt-6 grid md:grid-cols-2 gap-4">
-      <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5">
+      <article class="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
         <h3 class="font-semibold">Spotify Wrapped App with Personalized LLM Analysis</h3>
-        <p class="mt-2 text-zinc-700">Android app with dynamic music visualizations and LLM-powered insights for 150+ users.</p>
-        <ul class="list-disc pl-5 mt-2 text-zinc-700">
-          <li>Implemented OAuth2 with Firebase Authentication and Google Sign-In with sub-200ms median auth.</li>
-          <li>Built an LLM summary pipeline to generate per-user insights; cached results to reduce tokens by 60%.</li>
-          <li>Shipped Crashlytics and in-app analytics to iterate on UX based on retention and session length.</li>
+        <p class="mt-2 text-zinc-700 dark:text-zinc-300">Android app with dynamic music visualizations and LLM powered insights for 150 plus users.</p>
+        <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
+          <li>Implemented OAuth2 with Firebase Authentication and Google Sign In with sub 200 ms median auth.</li>
+          <li>Built an LLM summary pipeline to generate per user insights; cached results to reduce tokens by 60 percent.</li>
+          <li>Shipped Crashlytics and analytics to iterate on UX based on retention and session length.</li>
         </ul>
       </article>
-      <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5">
-        <h3 class="font-semibold">Full-Stack College Scheduler App</h3>
-        <p class="mt-2 text-zinc-700">Android + Firebase app helping 500+ students manage schedules with conflict detection.</p>
-        <ul class="list-disc pl-5 mt-2 text-zinc-700">
-          <li>Designed a conflict-detection algorithm for overlapping courses; reduced schedule errors by ~40% in tests.</li>
+      <article class="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
+        <h3 class="font-semibold">Full Stack College Scheduler App</h3>
+        <p class="mt-2 text-zinc-700 dark:text-zinc-300">Android plus Firebase app helping 500 plus students manage schedules with conflict detection.</p>
+        <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
+          <li>Designed a conflict detection algorithm for overlapping courses; reduced schedule errors by about 40 percent in tests.</li>
           <li>Integrated push notifications with FCM; built a rules engine to notify on conflicts and upcoming exams.</li>
-          <li>Provisioned Firebase security rules and batched writes to keep operations under 200ms P50.</li>
+          <li>Provisioned Firebase security rules and batched writes to keep operations under 200 ms P50.</li>
         </ul>
       </article>
-      <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5 md:col-span-2">
-        <h3 class="font-semibold">Tennis Games via Computer Vision</h3>
-        <p class="mt-2 text-zinc-700">TrackNet + OpenCV to detect precise bounce locations (>95% accuracy). Visualized 100+ rallies; presented findings to 300+ attendees.</p>
-        <ul class="list-disc pl-5 mt-2 text-zinc-700">
-          <li>Reproduced TrackNet inference and added post-processing to estimate velocity and bounce confidence.</li>
+      <article class="rounded-2xl border border-zinc-200 p-5 md:col-span-2 dark:border-zinc-800">
+        <h3 class="font-semibold">Statistical Analysis and Evaluation of Tennis Games Using Computer Vision</h3>
+        <p class="mt-2 text-zinc-700 dark:text-zinc-300">TrackNet plus OpenCV to detect bounce locations with more than 95 percent accuracy. Visualized 100 plus rallies; presented findings to 300 plus attendees.</p>
+        <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
+          <li>Reproduced TrackNet inference and added post processing to estimate velocity and bounce confidence.</li>
           <li>Exported rally segments to CSV for downstream analytics; created overlays for highlight reels.</li>
           <li>Deployed a lightweight Flask API to serve predictions for a demo front end.</li>
         </ul>
@@ -153,86 +212,81 @@
   <!-- Skills -->
   <section id="skills" class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold">Skills</h2>
-    <div class="mt-4 flex flex-wrap gap-2 text-sm"><span class="px-3 py-1 rounded-full bg-zinc-200/60">Python</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Java</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">C/C++</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">JavaScript</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">TypeScript</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Swift</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Kotlin</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">SQL</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">PostgreSQL</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">MongoDB</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">HTML/CSS</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">React</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">React Native</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Node.js</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Express</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Django</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Flask</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">PyTorch</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">TensorFlow</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">scikit-learn</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">OpenCV</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">SGLang</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Docker</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Kubernetes</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">AWS</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Firebase</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Git</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Linux</span>
-<span class="px-3 py-1 rounded-full bg-zinc-200/60">Bash</span></div>
+    <div class="mt-4 flex flex-wrap gap-2 text-sm">
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Python</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Java</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">C/C++</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">JavaScript</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">TypeScript</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Swift</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Kotlin</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">SQL</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">PostgreSQL</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">MongoDB</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">HTML/CSS</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">React</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">React Native</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Node.js</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Express</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Django</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Flask</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">PyTorch</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">TensorFlow</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">scikit-learn</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">OpenCV</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">SGLang</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Docker</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Kubernetes</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">AWS</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Firebase</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Git</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Linux</span>
+      <span class="px-3 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">Bash</span>
+    </div>
   </section>
 
   <!-- Work Samples -->
-  
   <section id="work" class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold">Work Samples</h2>
     <div id="workGrid" class="mt-6 grid md:grid-cols-2 gap-4"></div>
   </section>
 
-
-  
+  <!-- Interests -->
   <section id="interests" class="max-w-6xl mx-auto px-4 py-12">
-    <h2 class="text-2xl font-bold">Interests & Passions</h2>
-    <p class="mt-2 text-zinc-700">Photography, Hiking, Traveling</p>
+    <h2 class="text-2xl font-bold">Interests and Passions</h2>
+    <p class="mt-2 text-zinc-700 dark:text-zinc-300">Photography, Hiking, Traveling</p>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      
-      <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800">
-        <img src="assets/interests/hiking.jpg" alt="Hiking   Lake 22, WA" loading="lazy" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+      <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
+        <img src="assets/interests/hiking.jpg" alt="Hiking at Lake 22, WA" loading="lazy" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
         <figcaption class="absolute bottom-0 left-0 right-0 p-3 text-sm bg-gradient-to-t from-black/60 to-transparent text-white flex items-end justify-between">
           <span class="font-semibold">Hiking</span>
-          <span class="text-xs opacity-80">Hiking   Lake 22, WA</span>
+          <span class="text-xs opacity-80">Lake 22, WA</span>
         </figcaption>
       </figure>
-    
 
-      <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800">
-        <img src="assets/interests/photography.jpg" alt="Photography   Riverfront at dusk" loading="lazy" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+      <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
+        <img src="assets/interests/photography.jpg" alt="Photography at riverfront during dusk" loading="lazy" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
         <figcaption class="absolute bottom-0 left-0 right-0 p-3 text-sm bg-gradient-to-t from-black/60 to-transparent text-white flex items-end justify-between">
           <span class="font-semibold">Photography</span>
-          <span class="text-xs opacity-80">Photography   Riverfront at dusk</span>
+          <span class="text-xs opacity-80">Riverfront in Salzburg, Austria</span>
         </figcaption>
       </figure>
-    
 
-      <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800">
-        <img src="assets/interests/traveling.jpg" alt="Traveling   Taj Mahal, Agra" loading="lazy" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+      <figure class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
+        <img src="assets/interests/traveling.jpg" alt="Traveling at the Taj Mahal in Agra" loading="lazy" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
         <figcaption class="absolute bottom-0 left-0 right-0 p-3 text-sm bg-gradient-to-t from-black/60 to-transparent text-white flex items-end justify-between">
           <span class="font-semibold">Traveling</span>
-          <span class="text-xs opacity-80">Traveling   Taj Mahal, Agra</span>
+          <span class="text-xs opacity-80">Taj Mahal, Agra</span>
         </figcaption>
       </figure>
-    
     </div>
   </section>
 
-
   <!-- Footer -->
   <footer class="border-t border-zinc-200 dark:border-zinc-800">
-    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-zinc-500 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-zinc-600 dark:text-zinc-400 flex items-center justify-between">
       <span>&copy; <span id="year"></span> Aarav Sharma</span>
-      <a href="assets/resume.pdf" class="underline dark:bg-white dark:text-zinc-900 dark:text-zinc-100">Resume (PDF)</a>
+      <a href="assets/resume.pdf" class="underline">Resume (PDF)</a>
     </div>
   </footer>
 
@@ -243,51 +297,50 @@
     // Theme toggle (icon + persists)
     (function() {
       var btn = document.getElementById('themeToggle');
-      if (!btn) return;
       var root = document.documentElement;
       var iconSun = document.getElementById('iconSun');
       var iconMoon = document.getElementById('iconMoon');
+      if (!btn || !root) return;
 
       function setIcons(isDark) {
         if (isDark) { iconSun.classList.add('hidden'); iconMoon.classList.remove('hidden'); }
         else { iconMoon.classList.add('hidden'); iconSun.classList.remove('hidden'); }
       }
 
-      var saved = localStorage.getItem('theme');
-      var isDark = saved ? (saved === 'dark') : false;
-      if (isDark) root.classList.add('dark');
-      setIcons(isDark);
-      btn.setAttribute('aria-pressed', String(isDark));
+      // Init from current DOM state (set by early script)
+      var startsDark = root.classList.contains('dark');
+      setIcons(startsDark);
+      btn.setAttribute('aria-pressed', String(startsDark));
 
       btn.addEventListener('click', function(){
         var nowDark = root.classList.toggle('dark');
-        localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+        try { localStorage.setItem('theme', nowDark ? 'dark' : 'light'); } catch(e){}
         btn.setAttribute('aria-pressed', String(nowDark));
         setIcons(nowDark);
       });
     })();
 
-    // Load work samples
+    // Load work samples (expects assets/work-samples.json with single heat exchanger entry)
     fetch('assets/work-samples.json')
       .then(r => r.json())
       .then(items => {
-        const grid = document.getElementById('workGrid');
-        grid.innerHTML = items.map(item => `
-          <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:border-zinc-800 p-5">
+        var grid = document.getElementById('workGrid');
+        grid.innerHTML = (items || []).map(function(item) {
+          return `
+          <article class="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
             <div class="flex items-baseline justify-between gap-2">
               <h3 class="font-semibold">${item.title}</h3>
               <a class="text-sm underline" href="${item.file}" target="_blank">Open PDF</a>
             </div>
-            <p class="mt-2 text-zinc-700">${item.description}</p>
+            <p class="mt-2 text-zinc-700 dark:text-zinc-300">${item.description}</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              ${(item.tags||[]).map(t => `<span class="px-2 py-1 rounded-full bg-zinc-200/60">${t}</span>`).join('')}
+              ${(item.tags || []).map(t => `<span class="px-2 py-1 rounded-full bg-zinc-200/60 dark:bg-zinc-800/80">${t}</span>`).join('')}
             </div>
-          </article>
-        `).join('');
+          </article>`;
+        }).join('');
       })
-      .catch(err => {
-        console.error(err);
-        document.getElementById('workGrid').innerHTML = '<p class="text-sm text-red-500">Could not load work-samples.json</p>';
+      .catch(function() {
+        document.getElementById('workGrid').innerHTML = '<p class="text-sm text-red-500">Could not load work samples</p>';
       });
   </script>
 </body>
