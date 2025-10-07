@@ -5,10 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aarav Sharma · Portfolio</title>
   <meta name="description" content="Aarav Sharma · Software Engineer & Researcher at Georgia Tech" />
+
+  <!-- Early theme: set 'dark' before paint if needed -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var shouldDark = saved ? (saved === 'dark')
+          : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (shouldDark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- IMPORTANT: enable class-based dark mode -->
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
   <link rel="stylesheet" href="assets/site.css" />
   <style>
     :root { scroll-behavior: smooth; }
@@ -178,7 +198,7 @@
         </ul>
       </article>
       <article class="rounded-2xl border border-zinc-200 p-5 md:col-span-2 dark:border-zinc-800">
-        <h3 class="font-semibold">Statistical Analysis and Evaluation of Tennis Games Using Computer Vision </h3>
+        <h3 class="font-semibold">Statistical Analysis and Evaluation of Tennis Games Using Computer Vision</h3>
         <p class="mt-2 text-zinc-700 dark:text-zinc-300">TrackNet plus OpenCV to detect bounce locations with more than 95 percent accuracy. Visualized 100 plus rallies; presented findings to 300 plus attendees.</p>
         <ul class="list-disc pl-5 mt-2 text-zinc-700 dark:text-zinc-300">
           <li>Reproduced TrackNet inference and added post processing to estimate velocity and bounce confidence.</li>
@@ -287,17 +307,14 @@
         else { iconMoon.classList.add('hidden'); iconSun.classList.remove('hidden'); }
       }
 
-      // Prefer saved theme, else OS preference, default to light
-      var saved = localStorage.getItem('theme');
-      var isDark = saved ? (saved === 'dark') : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark') root.classList.add('dark');
-      if (saved === 'light') root.classList.remove('dark');
-      setIcons(root.classList.contains('dark'));
-      btn.setAttribute('aria-pressed', String(root.classList.contains('dark')));
+      // Init from current DOM state (set by early script)
+      var startsDark = root.classList.contains('dark');
+      setIcons(startsDark);
+      btn.setAttribute('aria-pressed', String(startsDark));
 
       btn.addEventListener('click', function(){
         var nowDark = root.classList.toggle('dark');
-        localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+        try { localStorage.setItem('theme', nowDark ? 'dark' : 'light'); } catch(e){}
         btn.setAttribute('aria-pressed', String(nowDark));
         setIcons(nowDark);
       });
