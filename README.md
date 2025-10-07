@@ -30,18 +30,6 @@ README.md
 ## 🚀 Deployment
 This site is live at **[https://aaravtech.me](https://aaravtech.me)** via GitHub Pages.
 
-To update your site:
-1. Edit or replace any files (e.g., resume, work samples, photos).
-2. Commit changes to `main` branch — GitHub Pages will automatically redeploy.
-
-If your domain stops showing updates:
-- Hard refresh (`Cmd+Shift+R` or `Ctrl+Shift+R`)
-- Check **Settings → Pages → Deployment logs**
-- Ensure the repo root (not a subfolder) contains `index.html`
-
-## 🛠️ Local Testing
-Simply open `index.html` in your browser. No build step required.
-
 ## 📬 Contact
 **Aarav Sharma**  
 BS/MS Computer Science @ Georgia Tech  
